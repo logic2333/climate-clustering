@@ -1,4 +1,4 @@
-% This is just a demo readme, which will be changed to a well formatted README.MD before final submission of the project.
+% This is just a demo readme; will be changed to a well formatted README.MD before final submission of the project.
 
 
 borderdata.mat, bordersm.m, by Chad Greene, draw country borders on a map.
