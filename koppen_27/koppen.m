@@ -134,7 +134,11 @@ function cls = koppen_class(climatology)
                 cls = cls + "f";
             end
             if sum(t_monthly(2, :) > 10) < 4
-                cls = cls + "c";
+                if t_monthly(2, 1) <= -38
+                    cls = cls + "d";
+                else
+                    cls = cls + "c";
+                end
             elseif t_monthly(2, 12) > 22
                 cls = cls + "a";
             else
