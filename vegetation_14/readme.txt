@@ -1,6 +1,6 @@
 This dataset uses Most likely IGBP class layer in the original HDF file for year 2019.
 Original data access: https://lpdaac.usgs.gov/products/mcd12c1v006/
-The layer is downsampled and clipped with QGIS using Nearest Neighbor algorithm.
+The layer is downsampled and clipped with QGIS using Mode method.
 
 This layer originally classifies global land into 16 vegetation categories.
 Urban areas, unrelated to climate, are ignored(assigned as ocean/water body).
