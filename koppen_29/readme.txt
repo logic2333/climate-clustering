@@ -1,5 +1,5 @@
 29 categories in total
-"As" is not used; Dsd is not observed.
+"As" is not used; Dsd is not observed under this resolution.
 
 The criterion between BWh/BSh and BWk/BSk is whether the coldest month has a mean temperature > 0C
 -3C isotherm is used to distinguish between temperate(C) and continental(D) climates
