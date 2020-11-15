@@ -11,10 +11,18 @@ for i = 1:x
         if isstruct(ori_data_map{i, j})
             sprintf('%d, %d', i, j)
             count = count + 1;
+           
+            t_monthly = ori_data_map{i, j}.monthly{:, :};
+            % precipitation-PET correlation
+            % no time for this, but this may be good features
+%             precip = t_monthly(4, :);
+%             pet = t_monthly(5, :);
+%             data_mat(count, 77) = xcorr(precip, pet, 0, 'normalized');
+%             data_mat(count, 78) = std(xcorr(precip, pet), 1);  %
+%             overwrite xcorr for std
             
             % sort the months against temperature to ignore
             % hemisphere of the place
-            t_monthly = ori_data_map{i, j}.monthly{:, :};
             t_monthly = sortrows(t_monthly.', 2).';
             
             data_mat(count, 1) = ori_data_map{i, j}.seasonality.annual_temperature_range;
@@ -94,6 +102,8 @@ data_mat(:, 24:35) = zscore(data_mat(:, 24:35), 0, 'all');
 % temperature
 data_mat(:, 36:76) = zscore(data_mat(:, 36:76), 0, 'all');
 
+% precipitation-PET correlation
+% data_mat(:, 77) = zscore(data_mat(:, 77));
 % month categories
 % data_mat(:, 73:81) = zscore(data_mat(:, 73:81), 0, 'all');
 

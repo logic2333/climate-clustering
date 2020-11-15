@@ -1,4 +1,4 @@
-% climate_chart(gca, ori_data_map{37, 1}.monthly, 'Vancouver', 'green');
+% climate_chart(gca, ori_data_map{37, 1}.monthly, 'Vancouver', 'green', 'lat: xx, lon: xx, scd: xx, gsl: xx');
 
 function climate_chart(ax, monthly, city, color, subt)
     title(ax, city, 'Color', color);
