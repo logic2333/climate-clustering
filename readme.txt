@@ -3,10 +3,11 @@
 
 borderdata.mat, bordersm.m, by Chad Greene, draw country borders on a map.
 
-tif folder stores original data from CHELSA and TerraClimate.
+tif folder stores original data from CHELSA, TerraClimate.
 preprocess.m under this folder collects the tifs and gives ori_data.mat.
 
 koppen_29 holds plotted maps of the traditional Koppen-Geiger Climate Classification.
+vegetation_14 saves MODIS land cover type(https://lpdaac.usgs.gov/products/mcd12c1v006/).
 
 Clustering results are plotted in corresponding folders: xxmedoids, som_xxxx_xxxtop(with or without PCA).
 

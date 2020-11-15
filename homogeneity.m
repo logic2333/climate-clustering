@@ -1,3 +1,4 @@
+% homogeneity score of V-measure
 % I1 is reference(Koppen or vegetation, C), I2 is the clustering to be
 % evaluated(K)
 % score(C, K) = 1 - (H(C|K) + H(K)) / (H(C) + H(K))   harmonic, penalizes
