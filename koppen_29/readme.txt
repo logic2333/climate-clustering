@@ -8,4 +8,4 @@ Cfc, Csc and Cwc are quite rare, not eye-catching on the map.
 But they do exist in some isolated corners, mostly on the high Andes in South America.
 The maps do show this.
 
-climate_chart.m, ori_data.mat, bordersm.m, borderdata.mat in the upper directory are used.
+koppen.m and koppen_plot.m depends on climate_chart.m, ori_data.mat, bordersm.m, borderdata.mat in the upper directory.

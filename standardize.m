@@ -1,25 +1,21 @@
 clear; clc; 
+
 load('ori_data.mat');
-% load('res_month.mat');
 [x, y] = size(ori_data_map);
-data_mat = zeros(61784, 79);
+data_mat = zeros(61784, 82);
 
 % draw data from ori_data_map into data_mat
 count = 0;
 for i = 1:x
     for j = 1:y
         if isstruct(ori_data_map{i, j})
-            sprintf('%d, %d', i, j)
+            disp([i j])
             count = count + 1;
            
             t_monthly = ori_data_map{i, j}.monthly{:, :};
             % precipitation-PET correlation
             % no time for this, but this may be good features
-%             precip = t_monthly(4, :);
-%             pet = t_monthly(5, :);
-%             data_mat(count, 77) = xcorr(precip, pet, 0, 'normalized');
-%             data_mat(count, 78) = std(xcorr(precip, pet), 1);  %
-%             overwrite xcorr for std
+            [data_mat(count, 77), data_mat(count, 78), data_mat(count, 79)] = my_xcorr(t_monthly(4, :), t_monthly(5, :));
             
             % sort the months against temperature to ignore
             % hemisphere of the place
@@ -70,8 +66,8 @@ for i = 1:x
             % month categories
             % data_mat(count, 73:81) = res.month_count(count, 3:11);
             % geo coordinates
-            data_mat(count, 77) = i;
-            data_mat(count, 78) = j;
+            data_mat(count, 80) = i;
+            data_mat(count, 81) = j;
         end
     
     end
@@ -103,8 +99,33 @@ data_mat(:, 24:35) = zscore(data_mat(:, 24:35), 0, 'all');
 data_mat(:, 36:76) = zscore(data_mat(:, 36:76), 0, 'all');
 
 % precipitation-PET correlation
-% data_mat(:, 77) = zscore(data_mat(:, 77));
+for i = 77:78
+    data_mat(:, i) = zscore(data_mat(:, i));
+end
 % month categories
 % data_mat(:, 73:81) = zscore(data_mat(:, 73:81), 0, 'all');
 
 save('data_mat.mat', 'data_mat');
+
+
+function [corr0, corr_std, phase_diff] = my_xcorr(p1, p2)
+    corrs = zeros(12, 1);
+    corrs(6, 1) = p1 * p2';
+    for i = 1:6
+        p1t = p1;
+        p2t = [p2(13-i:12) p2(1:12-i)];
+        corrs(6+i, 1) = p1t * p2t';
+    end
+    for i = 1:5
+        p1t = p1;
+        p2t = [p2(i+1:12) p2(1:i)];
+        corrs(6-i, 1) = p1t * p2t';
+    end
+    if xcorr(p1, 0) ~= 0 && xcorr(p2, 0) ~= 0
+        corrs = corrs / sqrt(xcorr(p1, 0) * xcorr(p2, 0));
+    end
+    corr0 = corrs(6, 1);
+    corr_std = std(corrs, 1);
+    [~, I] = max(corrs);
+    phase_diff = cos(I*pi/6);
+end
