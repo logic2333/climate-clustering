@@ -115,7 +115,7 @@ T = table(model_names, eval_res(:, 1), eval_res(:, 2), eval_res(:, 3), eval_res(
     'VariableNames', {'Model', 'homogeneity with vegetation', 'silhouette', 'similarity with Koppen', 'total score'});
 T = sortrows(T, {'total score', 'homogeneity with vegetation', 'silhouette', 'similarity with Koppen'}, {'descend', 'descend', 'descend', 'descend'});
 save('eval_res.mat', 'T');
-
+fprintf('All done. Evaluation scores saved in eval_res.mat.\n');
 
 function val = my_silhouette(dat, I)
     X = dat(:, 1:end-3);
