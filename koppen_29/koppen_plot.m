@@ -17,12 +17,12 @@ geoshow(axm, 'worldcities.shp', 'Marker', '.', 'MarkerEdgeColor', 'k');
 set(gcf, 'WindowState', 'maximized');
 exportgraphics(axm, 'globe.png', 'Resolution', 300);
 
-h = findobj(axm, 'HitTest', 'on');
-for i = 1:length(h)
-    set(h(i, 1), 'HitTest', 'off');
-end
-set(axm, 'HitTest', 'on');
-set(axm, 'ButtonDownFcn', {@my_callback, R, ori_data_map, I, cm});
+% h = findobj(axm, 'HitTest', 'on');
+% for i = 1:length(h)
+%     set(h(i, 1), 'HitTest', 'off');
+% end
+% set(axm, 'HitTest', 'on');
+% set(axm, 'ButtonDownFcn', {@my_callback, R, ori_data_map, I, cm});
 
 for i = 1:num_categories    
     filter_show_(R, i, cats{i+1}, I, num_categories);
@@ -44,27 +44,27 @@ function filter_show_(R, i, cat, I, num_categories)
     close all;
 end
 
-function my_callback(~, ~, R, climatologies, I, cm)
-    pt = gcpmap;
-    lat = pt(1, 1); x = round(latitudeToIntrinsicY(R, lat));
-    lon = pt(1, 2); y = round(longitudeToIntrinsicX(R, lon));
-    cat = I(x, y);
-    
-    chart(climatologies{x, y}, cat, lat, lon, cm(uint8(cat), :));
-end
+% function my_callback(~, ~, R, climatologies, I, cm)
+%     pt = gcpmap;
+%     lat = pt(1, 1); x = round(latitudeToIntrinsicY(R, lat));
+%     lon = pt(1, 2); y = round(longitudeToIntrinsicX(R, lon));
+%     cat = I(x, y);
+%     
+%     chart(climatologies{x, y}, cat, lat, lon, cm(uint8(cat), :));
+% end
 
-function chart(climatology, cat, lat, lon, color)
-    url = sprintf('https://nominatim.openstreetmap.org/reverse?format=json&lat=%f&lon=%f&zoom=8', lat, lon);
-    city = "";
-    try
-        city = webread(url).display_name;
-    catch
-    end
-    city = append(city, sprintf('(%s)', cat));
-    subt = {sprintf('lat: %.2f, lon: %.2f', lat, lon), ...
-        sprintf('grow season: %d d, snow cover: %d d', climatology.grow_season.length, climatology.grow_season.snow_cover_length)};
-     
-    fig = figure; ax = axes(fig);
-    climate_chart(ax, climatology.monthly, city, color, subt);
-
-end
+% function chart(climatology, cat, lat, lon, color)
+%     url = sprintf('https://nominatim.openstreetmap.org/reverse?format=json&lat=%f&lon=%f&zoom=8', lat, lon);
+%     city = "";
+%     try
+%         city = webread(url).display_name;
+%     catch
+%     end
+%     city = append(city, sprintf('(%s)', cat));
+%     subt = {sprintf('lat: %.2f, lon: %.2f', lat, lon), ...
+%         sprintf('grow season: %d d, snow cover: %d d', climatology.grow_season.length, climatology.grow_season.snow_cover_length)};
+%      
+%     fig = figure; ax = axes(fig);
+%     climate_chart(ax, climatology.monthly, city, color, subt);
+% 
+% end

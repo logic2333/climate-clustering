@@ -15,7 +15,8 @@ num_categories = length(centroids) - 1;
 
 axm = axesm('pcarree');
 % set(gcf, 'Visible', 'off');
-cm = turbo(num_categories);
+ocean_color = [0.1900 0.0718 0.2322];
+cm = [ocean_color; turbo(num_categories)];
 geoshow(axm, uint8(I), cm, R);
 bordersm('countries', 'k');
 geoshow(axm, 'worldcities.shp', 'Marker', '.', 'MarkerEdgeColor', 'k');
@@ -26,7 +27,7 @@ for i = 2:num_categories+1
 end
 
 set(gcf, 'WindowState', 'maximized');
-exportgraphics(axm, 'globe.png', 'Resolution', 300);
+% exportgraphics(axm, 'globe.png', 'Resolution', 300);
 
 % These are used for map interaction, not used in bulk processing
 h = findobj(axm, 'HitTest', 'on');

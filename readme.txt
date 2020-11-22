@@ -12,13 +12,15 @@ vegetation_14 saves MODIS land cover type(https://lpdaac.usgs.gov/products/mcd12
 Clustering results are plotted in corresponding folders: xxmedoids, som_xxxx_xxxtop(with or without PCA).
 
 
-standardize.m changes ori_data.mat to data_mat.mat by z-score standardization.
+standardize.m changes ori_data.mat to data_mat.mat by z-score standardization and tanh activation.
 data_mat.csv is actually the same thing as data_mat.mat, header added.
-After PCA on data_mat.mat, pca_mat.mat picks top 54 components that explain over 99.99% of the original feature space.
 
 bulk_process.m trains clustering models, plots the result on the globe and evaluates the model.
 It picks models(Self-Organizing Maps and K-Medoids) according to the folders' names under this directory,
 and saves the plotted maps and clustering results(res.mat) under corresponding folders.
+
+merge.m detects feasible merges in the clustering results to improve homogeneity with vegetation, 
+and saves merged clusterings in '_merged' folders.
 
 Each res.mat can be loaded with interactive_map.m.
 This code starts an interactive map where users click on the map, and it will show the climate chart of the clicked place.

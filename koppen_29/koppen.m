@@ -59,9 +59,12 @@ I = categorical(I);
 % [t1, t2] = geographicToIntrinsic(R, centers(:, 1), centers(:, 2));
 % centers_ = round([t2 t1]);
 
-res = struct('I', I);
-save('res.mat', 'res');
-
+% res = struct('I', I);
+% save('res.mat', 'res');
+load('res_vegetation.mat');
+veg = res.I;
+score = homogeneity(veg, I, false, true);
+fprintf('%f\n', score);
 
 
 function cls = koppen_class(climatology)
@@ -76,14 +79,14 @@ function cls = koppen_class(climatology)
     end
     if climatology.annual.total_precipitation < 0.5 * thresh          % arid, BW
         cls = cls + "BW";
-        if t_monthly(2, 1) < 0
+        if climatology.annual.mean_temperature < 18
             cls = cls + "k";
         else
             cls = cls + "h";
         end
     elseif climatology.annual.total_precipitation < thresh            % semi-arid, BS
         cls = cls + "BS";
-        if t_monthly(2, 1) < 0
+        if climatology.annual.mean_temperature < 18
             cls = cls + "k";
         else
             cls = cls + "h";
