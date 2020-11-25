@@ -12,6 +12,7 @@ listing = listing(mask);
 
 l = length(listing);
 eval_res = zeros(l, 3);
+% eval_res_before = zeros(l, 1);  %%
 model_names = strings(l, 1);
 
 load('data_mat.mat');
@@ -22,7 +23,9 @@ kp = res.I;
 load('res_vegetation.mat');
 veg = res.I;
 a = 270; b = 719;
-
+alpha = 2.29;
+thresh = 0.03;  % important parameter
+    
 fprintf('Preparation done. %d model(s) to merge\n', l);
 
 for i = 1:l
@@ -38,43 +41,68 @@ for i = 1:l
     end
     
     class_score = my_silhouette(data, res.I, false);    
-    centers = zeros(num_cats-1, size(data, 2) - 3);
-    for j = 2:num_cats
-        centers(j-1, :) = data(data(:, end-2) == res.centroids(j, 1) & data(:, end-1) == res.centroids(j, 2), 1:end-3);
-    end
-    clust_dists = pdist(centers);
-    med_clust_dists = median(clust_dists);
-    weights_1 = max(0, squareform(1 - 2 * inverse_quantile(clust_dists, clust_dists)));
-    clust_dists = squareform(clust_dists);
-    % thresh1 = quantile(clust_dists, 0.2);  % important parameter
-    % weights = -tanh(zscore(clust_dists, 1, 'all'));    
-    veg_score = homogeneity(veg, res.I, false, true);
+    veg_score = homogeneity(veg, res.I, false, alpha);
+%     eval_res_before(i, 1) = veg_score; %%
     fprintf('Homogeneity score before merging is %f\n', veg_score);
     fprintf('Calinski-Harabasz score before merging is %f\n', class_score);
     toc
     
-    fprintf('Preparing optimization matrix...\n');
-    optim_mat = zeros(num_cats, num_cats);
-    weights_ = [];
-    for j = 2:num_cats-1
-        for k = j+1:num_cats
-            temp_I = res.I;
-            temp_I(temp_I == j) = k;     
-            new_veg_score = homogeneity(veg, temp_I, false, true);
-            weights_ = [weights_ my_silhouette(data, temp_I, false) / class_score];  
-            optim_mat(j, k) = max(0, new_veg_score - veg_score);        
+    centers = zeros(num_cats-1, size(data, 2) - 3);
+    for j = 2:num_cats
+        centers(j-1, :) = data(data(:, end-2) == res.centroids(j, 1) & data(:, end-1) == res.centroids(j, 2), 1:end-3);
+        if isempty(res.I(res.I == j))
+            centers(j-1, :) = NaN(size(centers(j-1, :)));
         end
     end
-    weights = max(0, squareform(2 * inverse_quantile(weights_, weights_) - 1));
-    optim_mat(2:end, 2:end) = optim_mat(2:end, 2:end) .* weights .* weights_1;
+    clust_dists = pdist(centers);
+    dists = rmmissing(clust_dists);
+    med_clust_dists = median(dists);
+    clust_dists = squareform(clust_dists);
+    quantiles = inverse_quantile(dists, dists);
+    weights_1 = zeros(num_cats, num_cats);
+    for j = 2:num_cats-1
+        for k = j+1:num_cats
+            if ~isnan(clust_dists(j-1, k-1))
+                weights_1(j, k) = max(0, 1 - 2 * quantiles(dists == clust_dists(j-1, k-1)));
+            end
+        end
+    end
+%     weights_1 = max(0, squareform(1 - 2 * inverse_quantile(clust_dists, clust_dists)));
+
+    % thresh1 = quantile(clust_dists, 0.2);  % important parameter
+    % weights = -tanh(zscore(clust_dists, 1, 'all'));    
+
+    
+    fprintf('Preparing optimization matrix...\n');
+    optim_mat = zeros(num_cats, num_cats);
+    weights = zeros(num_cats, num_cats);
+    for j = 2:num_cats-1
+        for k = j+1:num_cats
+            if ~isempty(res.I(res.I == j)) && ~isempty(res.I(res.I == k))
+                temp_I = res.I;
+                temp_I(temp_I == j) = k;     
+                new_veg_score = homogeneity(veg, temp_I, false, alpha);
+                weights(j, k) = my_silhouette(data, temp_I, false) / class_score;  
+                optim_mat(j, k) = max(0, new_veg_score - veg_score);     
+            end
+        end
+    end
+    weights_ = unique(weights);
+    quantiles = inverse_quantile(weights_, weights_);
+    for j = 2:num_cats-1
+        for k = j+1:num_cats
+            weights(j, k) = max(0, 2 * quantiles(weights_ == weights(j, k)) - 1);
+        end
+    end
+    %weights = max(0, squareform(2 * inverse_quantile(weights_, weights_) - 1));
+    optim_mat = optim_mat .* weights .* weights_1;
     optim_mat(1, :) = 1:num_cats; optim_mat(:, 1) = 1:num_cats;
     toc
 
     fprintf('Finding feasible merges...');
     merges = [];
     [M, I] = max(optim_mat(2:end, 2:end), [], 'all', 'linear');
-    thresh = 0.0005;  % important parameter
-    while M > thresh    
+    while M > thresh / (num_cats - 1)    
         [row, col] = ind2sub(size(optim_mat) - 1, I);
         to_del_1 = optim_mat(row+1, 1); to_del_2 = optim_mat(1, col+1);
         merges = [merges; to_del_1 to_del_2 M clust_dists(to_del_1-1, to_del_2-1) med_clust_dists];
@@ -120,9 +148,9 @@ for i = 1:l
         toc
 
         fprintf('Evaluating...\n');
-        eval_res(i, 1) = homogeneity(veg, res.I, false, true);
+        eval_res(i, 1) = homogeneity(veg, res.I, false, alpha);
         eval_res(i, 2) = my_silhouette(data_mat, res.I, true);
-        eval_res(i, 3) = homogeneity(kp, res.I, true, false);
+        eval_res(i, 3) = homogeneity(kp, res.I, true, 0);
         fprintf('Scores after merging are %f %f %f\n', eval_res(i, 1), eval_res(i, 2), eval_res(i, 3));
         fprintf('Calinski-Harabasz score after merging is %f\n', my_silhouette(data_mat, res.I, false));
     end
@@ -133,11 +161,7 @@ T = table(model_names, eval_res(:, 1), eval_res(:, 2), eval_res(:, 3), ...
     'VariableNames', {'Model', 'homogeneity with vegetation', 'silhouette', 'similarity with Koppen'});
 T = sortrows(T, {'homogeneity with vegetation', 'silhouette', 'similarity with Koppen'}, {'descend', 'descend', 'descend'});
 writetable(T, 'eval_res_merged.xlsx');
+% T = table(model_names, eval_res_before, ...
+%     'VariableNames', {'Model', 'homogeneity with vegetation'});  %%
+% writetable(T, 'eval_res_new.xlsx');  %%
 fprintf('All done. Evaluation scores saved in eval_res_merged.xlsx.\n');
-
-
-function s = inverse_quantile(X, y)
-    sortedX = sort(X);
-    listCumProb = (1/length(X))*(0.5:1:length(X)-0.5);
-    s = interp1(sortedX, listCumProb, y);
-end

@@ -1,4 +1,4 @@
-% This code starts an interactive map where users click on the map, and it
+% This code starts an interactive map where users click on, and it
 % will show the climate chart of the clicked place
 
 close all; clear; clc;
@@ -21,9 +21,11 @@ geoshow(axm, uint8(I), cm, R);
 bordersm('countries', 'k');
 geoshow(axm, 'worldcities.shp', 'Marker', '.', 'MarkerEdgeColor', 'k');
 for i = 2:num_categories+1
-    color = [1 1 1] - cm(i, :);
-    textm(centroids.Latitude(i), centroids.Longitude(i), sprintf('%d', i-1), 'Color', color, 'FontSize', 8);
-    geoshow(axm, centroids(i), 'Marker', 'diamond', 'MarkerEdgeColor', color, 'MarkerSize', 6);
+    if ~isempty(I(I == i))
+        color = [1 1 1] - cm(i, :);
+        textm(centroids.Latitude(i), centroids.Longitude(i), sprintf('%d', i-1), 'Color', color, 'FontSize', 8);
+        geoshow(axm, centroids(i), 'Marker', 'diamond', 'MarkerEdgeColor', color, 'MarkerSize', 6);
+    end
 end
 
 set(gcf, 'WindowState', 'maximized');

@@ -11,6 +11,7 @@ vegetation_14 saves MODIS land cover type(https://lpdaac.usgs.gov/products/mcd12
 
 Clustering results are plotted in corresponding folders: xxmedoids, som_xxxx_xxxtop(with or without PCA).
 
+Finalized and interpreted clustering results are under the final folder.
 
 standardize.m changes ori_data.mat to data_mat.mat by z-score standardization and tanh activation.
 data_mat.csv is actually the same thing as data_mat.mat, header added.
@@ -22,5 +23,6 @@ and saves the plotted maps and clustering results(res.mat) under corresponding f
 merge.m detects feasible merges in the clustering results to improve homogeneity with vegetation, 
 and saves merged clusterings in '_merged' folders.
 
+Evaluation scores of the models are in eval_res.xlsx. 
 Each res.mat can be loaded with interactive_map.m.
 This code starts an interactive map where users click on the map, and it will show the climate chart of the clicked place.

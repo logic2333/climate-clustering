@@ -22,6 +22,7 @@ kp = res.I;
 load('res_vegetation.mat');
 veg = res.I;
 a = 270; b = 719;
+alpha = 2.29;
 
 fprintf('Preparation done. %d model(s) to train\n', l);
 
@@ -100,9 +101,9 @@ for i = 1:l
 
     disp(append('Model ', model_names(i, 1), ' plotted. Evaluating...'));
     toc
-    eval_res(i, 1) = homogeneity(veg, res.I, false, true);
+    eval_res(i, 1) = homogeneity(veg, res.I, false, alpha);
     eval_res(i, 2) = my_silhouette(data_mat, res.I, true);
-    eval_res(i, 3) = homogeneity(kp, res.I, true, false);
+    eval_res(i, 3) = homogeneity(kp, res.I, true, 0);
     fprintf('Model #%d %s score: %f %f %f\n', i, model_names(i, 1), eval_res(i, 1), eval_res(i, 2), eval_res(i, 3));
     toc
 end
