@@ -6,7 +6,7 @@ close all; clear; clc;
 a = 270; b = 719;
 R = georefcells([-55 80], [-180 179.5], [a b], 'ColumnsStartFrom', 'north');
 
-load('res.mat');
+load('res_final.mat');
 load('ori_data.mat');
 
 I = res.I;
