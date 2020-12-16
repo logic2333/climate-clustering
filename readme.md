@@ -1,11 +1,11 @@
 
-### Climate Classification: A data-driven approach
+## Climate Classification: A data-driven approach
 
 Climate and vegetation, directly and indirectly, influence each other, where the question arises if there is a mapping between climate and vegetation. To discover the humidity-heat conditions for different vegetation types, which is a vital goal of climate classification, we are pursuing a purely data-controlled approach for climate classification. The Köppen-Geiger classic climate classification system is based on heuristic and empirical rules, which may appear arbitrary and subjective.  Although these have been used dating from the 1900s, they have heuristic deficiencies, prompting various versions of modification.
 
-## Directory Structure
+### Directory Structure
 
-## Features
+### Features
 - borderdata.mat, bordersm.m, by Chad Greene, draw country borders on a map.
 - tif folder stores original data from CHELSA, TerraClimate. preprocess.m under this folder collects the tifs and gives ori_data.mat.
 - koppen_29 holds plotted maps of the traditional Koppen-Geiger Climate Classification.
@@ -20,8 +20,8 @@ Climate and vegetation, directly and indirectly, influence each other, where the
 - Each res.mat can be loaded with interactive_map.m.
 - This code starts an interactive map where users click on the map, and it will show the climate chart of the clicked place.
 
-## Notes
-This project is submitted as the final project for CMPT 732: Programming for Big Data Lab 1.
+### Notes
+This project is submitted as the final project for CMPT 726: Machine Learning
 - Code running instructions can be found in RUNNING.MD
 - Project details can be found in report.pdf
 
