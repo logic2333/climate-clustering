@@ -42,8 +42,8 @@ All the files mentioned here are under `som&kmedoids` folder. Download the neces
 
 ### Executables
 - `interactive_map.m`: starts an interactive map based on a `res.mat`. Users click on the map, and it will show the climate chart of the clicked place 
-- `bulk_process.m`: main entry to train the models. trains the models according to folder names(`xxmedoids`, `xxmedoids_pca`, `som_xx_xxxtop`) under current directory
-***create empty folders or rename existing model folders before running this code***, otherwise existing results would be overwritten
+- `bulk_process.m`: main entry to train the models. trains the models according to folder names(`xxmedoids`, `xxmedoids_pca`, `som_xx_xxxtop`) under current directory.
+***Create empty folders or rename existing model folders before running this code***, otherwise existing results would be overwritten
 - `bulk_plot.m`: make map plots of clustering results(res.mat). bulk_process.m calls this code, but it can also be run manually
 - `merge.m`: execute the merging algorithm on the clustering results. manually run it after running `bulk_process.m`
 
