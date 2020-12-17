@@ -47,16 +47,10 @@ Climate and vegetation, directly and indirectly, influence each other, where the
             |                                                  # distance_between_cluster_centroids, median_of_distances
             |-- res.mat                                        # ***global climate classification map given by the model, can be loaded by bulk_plot.m and interactive_map.m***
         |-- eval_res.xlsx                                      # scores of SOM and K-medoids models
-        |-- bulk_process.m                                     # ******main entry to train the models******
-        |                                                      # trains the models according to folder names(xxmedoids, xxmedoids_pca, som_xx_xxxtop) in the same directory
-        |                                                      # ******create new folders or rename existing folders before running this code
-        |                                                      # otherwise existing results would be overwritten
-        |-- bulk_plot.m                                        # *make map plots of clustering results(res.mat)*
-        |                                                      # bulk_process.m calls this code, but it can also be run manually
-        |-- merge.m                                            # *run the merging algorithm on the clustering results*
-        |                                                      # manually run it after running bulk_process.m
-        |-- interactive_map.m                                  # ******starts an interactive map based on res.mat******
-        |                                                      # users click on the map, and it will show the climate chart of the clicked place
+        |-- bulk_process.m                                     # main entry to train the models
+        |-- bulk_plot.m                                        # make map plots of clustering results(res.mat)
+        |-- merge.m                                            # execute the merging algorithm on the clustering results
+        |-- interactive_map.m                                  # starts an interactive map based on res.mat
         |-- dir_filter.m                                       # parses folder names and controls bulk_process.m, merge.m react to which folders
         |-- alpha_test.m                                       # used to decide the optimal alpha for harmonized homogeneity
         |-- standardization.m                                  # reads ori_data.mat, standardizes and activates the data, gives data_mat.mat
