@@ -17,8 +17,7 @@ Climate and vegetation, directly and indirectly, influence each other, where the
 - bulk_process.m trains clustering models, plots the result on the globe and evaluates the model. It picks models(Self-Organizing Maps and K-Medoids) according to the folders' names under this directory and saves the plotted maps and clustering results(res.mat) under corresponding folders.
 - merge.m detects feasible merges in the clustering results to improve homogeneity with vegetation, and saves merged clusterings in '_merged' folders.
 - Evaluation scores of the models are in eval_res.xlsx. 
-- Each res.mat can be loaded with interactive_map.m.
-- This code starts an interactive map where users click on the map, and it will show the climate chart of the clicked place.
+- Each res.mat can be loaded with interactive_map.m. This code starts an interactive map where users click on the map, and it will show the climate chart of the clicked place.
 
 ### Notes
 This project is submitted as the final project for CMPT 726: Machine Learning
