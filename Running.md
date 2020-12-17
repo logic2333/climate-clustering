@@ -27,7 +27,9 @@ Download the data_mat.csv, mapped_data.csv, koppen_data.csv data sets from this 
 - Directory for each model should contain evaluate.py and <file_with_model_name.py>
 - python3 <file_with_model_name.py>
 
-# Matlab Part(Training SOM and K-medoids models, Running interactive map)
+# Matlab Part
+
+**For Training SOM and K-medoids models, Running interactive map**
 
 ## Software
 Matlab R2020b(or above), Mapping toolbox, Statistics and Machine Learning Toolbox, Deep Learning Toolbox
