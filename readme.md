@@ -4,57 +4,43 @@
 Climate and vegetation, directly and indirectly, influence each other, where the question arises if there is a mapping between climate and vegetation. To discover the humidity-heat conditions for different vegetation types, which is a vital goal of climate classification, we are pursuing a purely data-controlled approach for climate classification. The Köppen-Geiger classic climate classification system is based on heuristic and empirical rules, which may appear arbitrary and subjective.  Although these have been used dating from the 1900s, they have heuristic deficiencies, prompting various versions of modification.
 
 ### Directory Structure
-
-.
-|-- Future Work                                         # (.py) files for each model mentioned
-|        |-- Affinity Propagation Clustering Algorithm            
+    .
+    |-- Future Work                                            # (.py) files for each model mentioned
+    |    |-- Affinity Propagation Clustering Algorithm                           
          |-- Optics Clustering Algorithm
-         |-- Spectral Clustering Algorithm
-|-- Supervised Models Code                              # (.py) files for each model mentioned along with evaluate.py
-|        |-- Decision Tree Classifier Algorithm
+         |-- Spectral Clustering Algorithm 
+    |-- Supervised Models Code                                 # (.py) files for each model mentioned along with evaluate.py
+    |    |--  Decision Tree Classifier Algorithm
          |-- Gaussian MD Algorithm
          |-- K Neighbors Classifier Algorithm
          |-- Linear Discriminant Analysis Algorithm
          |-- Logistic Regression Algorithm
          |-- Random Forest Classifer Algorithm
          |-- Support Vector Machines Algorithm
-|-- Testing results for supervised & unsupervised models  # excel sheets for each model along with different cluster numbers
-|        |-- Supervised Model Results.xlsx
+    |-- Testing results for supervised & unsupervised models   # excel sheets for each model along with different cluster numbers
+    |    |-- Supervised Model Results.xlsx
          |-- Unsupervised Clustering Model Results.xlsx
-|-- Unsupervised Models Code                            # (.py) files for each model mentioned along with map_plot.py & homegeneity_score.py
-|        |-- Agglomerative Clustering Algorithm
+    |-- Unsupervised Models Code                               # (.py) files for each model mentioned along with map_plot.py & homegeneity_score.py
+    |    |-- Agglomerative Clustering Algorithm
          |-- BIRCH Clustering Algorithm
          |-- Gaussian Mixture Clustering Algorithm
          |-- K-Means Clustering Algorithm
          |-- Mini Batch K-Means Clustering Algorithm
-|-- Unsupervised Models Plots                           # 36 (.png) files for each cluster for each model
-|        |-- Agglomerative Clustering Algorithm Plots
+    |-- Unsupervised Models Plots                              # 36 (.png) files for each cluster for each model
+    |    |-- Agglomerative Clustering Algorithm Plots
          |-- BIRCH Clustering Algorithm Plots
          |-- Gaussian Mixture Clustering Algorithm Plots
          |-- K-Means Clustering Algorithm Plots
          |-- Mini Batch K-Means Clustering Algorithm Plots
-|-- koppen_29
-|-- literatures
-|-- som&kmediods
-|-- tif
-|-- vegetation_14
-|-- data_mat.csv
-|-- eval_res.xlsx
-|-- readme.md                                        # repository's readme
-|__ report.pdf                                       # report specifying details of the project
-
-    .
-    |-- doc                           # Project report(.pdf), project proposal(.txt) and figures(.png)
-    |    |-- figs                           # Expected 15 output graphs on Dash(UI)
-              |-- Visual Graphs                    # 15 (.png) files       
-         |-- Project Proposal               # Proposed project proposal
-         |-- Project Report                 # Project Report
-    |-- src                           # CSV files and code
-    |    |-- csv_files                      # 16 CSV files generated after running the pyspark code 
-         |-- code files(.py)                # python files for generating (.csv) files and the UI
-         |-- requirements.txt               # libraries required for compiling the project
-    |-- README.md                     # repository's readme
-    |__ RUNNING.MD                    # instructions on running the project
+    |-- koppen_29
+    |-- literatures
+    |-- som&kmediods
+    |-- tif
+    |-- vegetation_14
+    |-- data_mat.csv
+    |-- eval_res.xlsx
+    |-- README.MD                                              # repository's readme
+    |__ report.pdf                                             # report specifying details of the project                  
 
 ### Features
 - borderdata.mat, bordersm.m, by Chad Greene, draw country borders on a map.
