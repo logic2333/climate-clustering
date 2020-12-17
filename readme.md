@@ -41,7 +41,8 @@ Climate and vegetation, directly and indirectly, influence each other, where the
 |-- data_mat.csv
 |-- eval_res.xlsx
 |-- readme.md                                        # repository's readme
-|-- report.pdf                                       # report specifying details of the project
+|__ report.pdf                                       # report specifying details of the project
+
 ### Features
 - borderdata.mat, bordersm.m, by Chad Greene, draw country borders on a map.
 - tif folder stores original data from CHELSA, TerraClimate. preprocess.m under this folder collects the tifs and gives ori_data.mat.
