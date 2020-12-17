@@ -1,3 +1,4 @@
+![alt text](https://github.com/logic2333/climate-clustering/blob/master/som%26kmedoids/final/globe2.png?raw=true)
 
 ## Climate Classification: A data-driven approach
 
@@ -33,30 +34,55 @@ Climate and vegetation, directly and indirectly, influence each other, where the
          |-- K-Means Clustering Algorithm Plots
          |-- Mini Batch K-Means Clustering Algorithm Plots
     |-- koppen_29
-    |-- literatures
+        |-- (.png) maps of individual Koppen climate types
+        |-- koppen.m                                           # calculate the Koppen classification on the dataset
+        |-- koppen.csv                                         # global Koppen classification map in csv
+    |-- literatures                                            # (.pdf) related published articles of this project
     |-- som&kmediods
-    |-- tif
+        |-- figures                                            # figures used in the reports to compare the performance of different models
+        |-- (all other folders)                                # results from various models. /final is the finalized result
+            |-- (.png) maps of individual climate types
+            |-- merge_info.txt                                 # if the result has gone through merging, this file specifies which cluster pairs are merged and other details
+            |                                                  # merged_cluster_1, merged_cluster_2, priority_for_merging(entry in optimization matrix), 
+            |                                                  # distance_between_cluster_centroids, median_of_distances
+            |-- res.mat                                        # ***global climate classification map given by the model, can be loaded by bulk_plot.m and interactive_map.m***
+        |-- eval_res.xlsx                                      # scores of SOM and K-medoids models
+        |-- bulk_process.m                                     # ******main entry to train the models******
+        |                                                      # trains the models according to folder names(xxmedoids, xxmedoids_pca, som_xx_xxxtop) in the same directory
+        |                                                      # ******create new folders or rename existing folders before running this code
+        |                                                      # otherwise existing results would be overwritten
+        |-- bulk_plot.m                                        # *make map plots of clustering results(res.mat)*
+        |                                                      # bulk_process.m calls this code, but it can also be run manually
+        |-- merge.m                                            # *run the merging algorithm on the clustering results*
+        |                                                      # manually run it after running bulk_process.m
+        |-- interactive_map.m                                  # ******starts an interactive map based on res.mat******
+        |                                                      # users click on the map, and it will show the climate chart of the clicked place
+        |-- dir_filter.m                                       # parses folder names and controls bulk_process.m, merge.m react to which folders
+        |-- alpha_test.m                                       # used to decide the optimal alpha for harmonized homogeneity
+        |-- standardization.m                                  # reads ori_data.mat, standardizes and activates the data, gives data_mat.mat
+        |-- (other helper functions)
+        |-- homogeneity.m                                      # calculates harmonized homogeneity score        
+    |-- tif                                                    
+        |-- (.tif) files of aligned and downsampled climate variables
+        |-- preprocess.m                                       # reorganizes the tifs as som&kmedoids/ori_data.mat
+        |-- CHELSA_tech_specification.pdf                      # documentation of CHELSA dataset       
     |-- vegetation_14
+        |-- (.png) maps of individual vegetation types
+        |-- vegetation.tif                                     # aligned and downsampled vegetation dataset
+        |-- MCD12_User_Guide_V6.pdf                            # documentation of MCD12C1, the vegetation dataset
     |-- Running.md                                             # instructions on running the project
-    |-- data_mat.csv
-    |-- eval_res.xlsx
-    |-- README.MD                                              # repository's readme
+    |-- data_mat.csv                                           # climate dataset after standardization and activation, which can be directly put to model training
+    |                                                          # same as som&kmedoids/data_mat.mat with headers
+    |-- README.MD                                              
     |-- report.pdf                                             # report specifying details of the project  
-    |__ requirements.txt                                       # libraries required for compiling the project
+    |-- requirements.txt                                       # libraries required for compiling the project
 
-### Features
-- borderdata.mat, bordersm.m, by Chad Greene, draw country borders on a map.
-- tif folder stores original data from CHELSA, TerraClimate. preprocess.m under this folder collects the tifs and gives ori_data.mat.
-- koppen_29 holds plotted maps of the traditional Koppen-Geiger Climate Classification.
-- vegetation_14 saves MODIS land cover type(https://lpdaac.usgs.gov/products/mcd12c1v006/).
-- Clustering results are plotted in corresponding folders: xxmedoids, som_xxxx_xxxtop(with or without PCA).
-- Finalized and interpreted clustering results are under the final folder.
-- standardize.m changes ori_data.mat to data_mat.mat by z-score standardization and tanh activation.
-- data_mat.csv is actually the same thing as data_mat.mat, header added.
-- bulk_process.m trains clustering models, plots the result on the globe and evaluates the model. It picks models(Self-Organizing Maps and K-Medoids) according to the folders' names under this directory and saves the plotted maps and clustering results(res.mat) under corresponding folders.
-- merge.m detects feasible merges in the clustering results to improve homogeneity with vegetation, and saves merged clusterings in '_merged' folders.
-- Evaluation scores of the models are in eval_res.xlsx. 
-- Each res.mat can be loaded with interactive_map.m. This code starts an interactive map where users click on the map, and it will show the climate chart of the clicked place.
+### Highlights
+- tanh activation on climate data
+- harmonized homogeneity metric for unsupervised clustering
+- objective merging postprocessing to improve goodness of fit with natural vegetation
+- optimal result interpreted, climate clusters named, centroid depicted
+- run the interactive map and explore climate of different places around the world!
 
 ### Notes
 This project is submitted as the final project for CMPT 726: Machine Learning
