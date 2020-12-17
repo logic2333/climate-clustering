@@ -37,10 +37,12 @@ Climate and vegetation, directly and indirectly, influence each other, where the
     |-- som&kmediods
     |-- tif
     |-- vegetation_14
+    |-- Running.md                                             # instructions on running the project
     |-- data_mat.csv
     |-- eval_res.xlsx
     |-- README.MD                                              # repository's readme
-    |__ report.pdf                                             # report specifying details of the project                  
+    |-- report.pdf                                             # report specifying details of the project  
+    |__ requirements.txt                                       # libraries required for compiling the project
 
 ### Features
 - borderdata.mat, bordersm.m, by Chad Greene, draw country borders on a map.
