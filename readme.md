@@ -43,26 +43,18 @@ Climate and vegetation, directly and indirectly, influence each other, where the
 |-- readme.md                                        # repository's readme
 |__ report.pdf                                       # report specifying details of the project
 
-app
-├── config
-│   └── routes.js
-├── screens
-│   └── App
-│       ├── screens
-│       │   ├── Admin
-│       │   │   ├── screens
-│       │   │   │   ├── Reports
-│       │   │   │   │   └── index.js
-│       │   │   │   └── Users
-│       │   │   │       └── index.js
-│       │   │   └── index.js
-│       │   └── Course
-│       │       ├── screens
-│       │       │   └── Assignments
-│       │       │       └── index.js
-│       │       └── index.js
-│       └── index.js
-└── index.js
+    .
+    |-- doc                           # Project report(.pdf), project proposal(.txt) and figures(.png)
+    |    |-- figs                           # Expected 15 output graphs on Dash(UI)
+              |-- Visual Graphs                    # 15 (.png) files       
+         |-- Project Proposal               # Proposed project proposal
+         |-- Project Report                 # Project Report
+    |-- src                           # CSV files and code
+    |    |-- csv_files                      # 16 CSV files generated after running the pyspark code 
+         |-- code files(.py)                # python files for generating (.csv) files and the UI
+         |-- requirements.txt               # libraries required for compiling the project
+    |-- README.md                     # repository's readme
+    |__ RUNNING.MD                    # instructions on running the project
 
 ### Features
 - borderdata.mat, bordersm.m, by Chad Greene, draw country borders on a map.
