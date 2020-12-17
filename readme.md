@@ -5,6 +5,43 @@ Climate and vegetation, directly and indirectly, influence each other, where the
 
 ### Directory Structure
 
+.
+|-- Future Work                                         # (.py) files for each model mentioned
+|   |-- Affinity Propagation Clustering Algorithm            
+    |-- Optics Clustering Algorithm
+    |-- Spectral Clustering Algorithm
+|-- Supervised Models Code                              # (.py) files for each model mentioned along with evaluate.py
+|   |-- Decision Tree Classifier Algorithm
+    |-- Gaussian MD Algorithm
+    |-- K Neighbors Classifier Algorithm
+    |-- Linear Discriminant Analysis Algorithm
+    |-- Logistic Regression Algorithm
+    |-- Random Forest Classifer Algorithm
+    |-- Support Vector Machines Algorithm
+|-- Testing results for supervised & unsupervised models  # excel sheets for each model along with different cluster numbers
+|   |-- Supervised Model Results.xlsx
+    |-- Unsupervised Clustering Model Results.xlsx
+|-- Unsupervised Models Code                            # (.py) files for each model mentioned along with map_plot.py & homegeneity_score.py
+|   |-- Agglomerative Clustering Algorithm
+    |-- BIRCH Clustering Algorithm
+    |-- Gaussian Mixture Clustering Algorithm
+    |-- K-Means Clustering Algorithm
+    |-- Mini Batch K-Means Clustering Algorithm
+|-- Unsupervised Models Plots                           # 36 (.png) files for each cluster for each model
+|   |-- Agglomerative Clustering Algorithm Plots
+    |-- BIRCH Clustering Algorithm Plots
+    |-- Gaussian Mixture Clustering Algorithm Plots
+    |-- K-Means Clustering Algorithm Plots
+    |-- Mini Batch K-Means Clustering Algorithm Plots
+|-- koppen_29
+|-- literatures
+|-- som&kmediods
+|-- tif
+|-- vegetation_14
+|-- data_mat.csv
+|-- eval_res.xlsx
+|-- readme.md                                        # repository's readme
+|-- report.pdf                                       # report specifying details of the project
 ### Features
 - borderdata.mat, bordersm.m, by Chad Greene, draw country borders on a map.
 - tif folder stores original data from CHELSA, TerraClimate. preprocess.m under this folder collects the tifs and gives ori_data.mat.
