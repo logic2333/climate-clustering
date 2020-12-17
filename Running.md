@@ -33,7 +33,7 @@ Download the data_mat.csv, mapped_data.csv, koppen_data.csv data sets from this 
 
 ## Software
 - Matlab R2020b, or above
-- Mapping toolbox(map plotting)
+- Mapping Toolbox(map plotting)
 - Statistics and Machine Learning Toolbox(K-medoids)
 - Deep Learning Toolbox(SOM)
 
