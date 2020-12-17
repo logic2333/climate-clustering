@@ -7,32 +7,32 @@ Climate and vegetation, directly and indirectly, influence each other, where the
 
 .
 |-- Future Work                                         # (.py) files for each model mentioned
-|   |-- Affinity Propagation Clustering Algorithm            
-    |-- Optics Clustering Algorithm
-    |-- Spectral Clustering Algorithm
+|        |-- Affinity Propagation Clustering Algorithm            
+         |-- Optics Clustering Algorithm
+         |-- Spectral Clustering Algorithm
 |-- Supervised Models Code                              # (.py) files for each model mentioned along with evaluate.py
-|   |-- Decision Tree Classifier Algorithm
-    |-- Gaussian MD Algorithm
-    |-- K Neighbors Classifier Algorithm
-    |-- Linear Discriminant Analysis Algorithm
-    |-- Logistic Regression Algorithm
-    |-- Random Forest Classifer Algorithm
-    |-- Support Vector Machines Algorithm
+|        |-- Decision Tree Classifier Algorithm
+         |-- Gaussian MD Algorithm
+         |-- K Neighbors Classifier Algorithm
+         |-- Linear Discriminant Analysis Algorithm
+         |-- Logistic Regression Algorithm
+         |-- Random Forest Classifer Algorithm
+         |-- Support Vector Machines Algorithm
 |-- Testing results for supervised & unsupervised models  # excel sheets for each model along with different cluster numbers
-|   |-- Supervised Model Results.xlsx
-    |-- Unsupervised Clustering Model Results.xlsx
+|        |-- Supervised Model Results.xlsx
+         |-- Unsupervised Clustering Model Results.xlsx
 |-- Unsupervised Models Code                            # (.py) files for each model mentioned along with map_plot.py & homegeneity_score.py
-|   |-- Agglomerative Clustering Algorithm
-    |-- BIRCH Clustering Algorithm
-    |-- Gaussian Mixture Clustering Algorithm
-    |-- K-Means Clustering Algorithm
-    |-- Mini Batch K-Means Clustering Algorithm
+|        |-- Agglomerative Clustering Algorithm
+         |-- BIRCH Clustering Algorithm
+         |-- Gaussian Mixture Clustering Algorithm
+         |-- K-Means Clustering Algorithm
+         |-- Mini Batch K-Means Clustering Algorithm
 |-- Unsupervised Models Plots                           # 36 (.png) files for each cluster for each model
-|   |-- Agglomerative Clustering Algorithm Plots
-    |-- BIRCH Clustering Algorithm Plots
-    |-- Gaussian Mixture Clustering Algorithm Plots
-    |-- K-Means Clustering Algorithm Plots
-    |-- Mini Batch K-Means Clustering Algorithm Plots
+|        |-- Agglomerative Clustering Algorithm Plots
+         |-- BIRCH Clustering Algorithm Plots
+         |-- Gaussian Mixture Clustering Algorithm Plots
+         |-- K-Means Clustering Algorithm Plots
+         |-- Mini Batch K-Means Clustering Algorithm Plots
 |-- koppen_29
 |-- literatures
 |-- som&kmediods
