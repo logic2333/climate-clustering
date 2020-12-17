@@ -74,7 +74,7 @@ Climate and vegetation, directly and indirectly, influence each other, where the
 ### Highlights
 - tanh activation on climate data
 - harmonized homogeneity metric for unsupervised clustering
-- objective merging postprocessing to improve goodness of fit with natural vegetation
+- objective merging postprocessing to improve fitness with natural vegetation
 - optimal result interpreted, climate clusters named, centroid depicted
 - run the interactive map and explore climate of different places around the world!
 
