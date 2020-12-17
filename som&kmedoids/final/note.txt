@@ -1,0 +1,8 @@
+This final result is interpreted from som_66_hextop_merged, which achieves the highest homogeneity with vegetation.
+
+Decision boundaries between tropical and subtropical climates are quite vague.
+Current dataset only judges(tanh activation applied) monthly mean temperatures against 0C and 10C.
+Setting an extra judger on a higher temperature(e.g. 18C or 22C) may improve this. 
+But unlike 0C(freezing point) and 10C(commonly acknowledged as the lowest temperature for plant growth),
+18C or 22C is subjective(human-imposed).
+I would rather not involve too many human-made factors in the clustering.
