@@ -29,7 +29,7 @@ Download the data_mat.csv, mapped_data.csv, koppen_data.csv data sets from this 
 
 # Matlab Part
 
-**For Training SOM and K-medoids models, Running interactive map**
+**For Training SOM and K-medoids models, running interactive map**
 
 ## Software
 Matlab R2020b(or above), Mapping toolbox, Statistics and Machine Learning Toolbox, Deep Learning Toolbox
